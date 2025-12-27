@@ -1,0 +1,176 @@
+@font-face {
+  font-family: "Norse Bold";
+  src: url(./assets/Norse-Bold.otf) format(opentype);
+}
+
+:root {
+  --font-ui-primary: "Inter";
+  --font-ui-secondary: "Roboto";
+  --font-mono: "Roboto Mono";
+  --font-logo: "Norse Bold";
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: scroll;
+  box-sizing: border-box;
+  font-family: var(--font-ui-primary);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+main {
+  display: flex;
+  min-height: 100%;
+}
+
+.logobar {
+  flex-basis: 30%;
+  background-image: url(./assets/halie-west-25xggax4bSA-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: #ccc;
+
+  display: flex;
+  align-items: flex-start;
+  padding-top: 20vh;
+
+  & .logo-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 0;
+    background-color: #13050588;
+    width: 100%;
+  }
+}
+
+.logo-text {
+  font-family: var(--font-logo);
+  color: #fff;
+  font-size: 4rem;
+}
+
+.signup-container {
+  flex-grow: 1;
+  background-color: #e9e6e6;
+
+  & > div {
+    padding: 24px 30px;
+
+    &:first-child {
+      font-weight: 600;
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.user-details {
+  background-color: #f3f3f3;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  & > p {
+    margin-top: 0;
+    font-weight: 600;
+    font-size: 1.2rem;
+  }
+}
+
+.submit-form {
+  & button {
+    appearance: none;
+    background-color: #596d48;
+    border-radius: 8px;
+    padding: 8px 24px;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  & p {
+    font-size: 0.9rem;
+    margin-top: 24px;
+
+    & > .login-redirect {
+      color: #596d48;
+      font-weight: 700;
+    }
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 18px;
+
+  @media screen and (max-width: 550px) {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  & > div {
+    flex-basis: 300px;
+    position: relative;
+
+    &:has(> input:user-valid:not(:focus))::after {
+      content: "✓";
+      position: absolute;
+      right: 8px;
+      top: 38%;
+      color: green;
+      font-size: 1.5rem;
+      pointer-events: none;
+    }
+
+    &:has(> input:user-invalid:not(:focus))::after {
+      content: "⚠";
+      position: absolute;
+      right: 8px;
+      top: 38%;
+      color: red;
+      font-size: 1.5rem;
+      pointer-events: none;
+    }
+  }
+
+  & label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #383838;
+
+    &:has(+ input:required)::after {
+      content: "*";
+      color: rgb(173, 36, 36);
+    }
+  }
+
+  & input {
+    appearance: none;
+    border: 1px solid #e5e7eb;
+    background-color: #e9e6e6;
+    width: 100%;
+    padding: 6px 32px 6px 10px;
+    border-radius: 4px;
+
+    &:focus {
+      outline: none;
+      border-color: rgb(106, 115, 241);
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      background-color: #f3f3f3;
+    }
+    &:user-invalid:not(:focus) {
+      border-color: red;
+    }
+    &:user-valid:not(:focus) {
+      border-color: green;
+    }
+  }
+}
